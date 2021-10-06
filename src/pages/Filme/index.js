@@ -31,6 +31,24 @@ export default function Filme(){
 
     },[history, id]); // passa o id como dependencia do useEffect para que caso sofra alguma alteração no id execute novamente
     
+    function salvaFilme(){
+        const minhaLista = localStorage.getItem('filmes');
+
+        let filmesSalvos = JSON.parse(minhaLista) || []; // se minhaLista estiver vazio ele filmesSalvos recebe vazio
+        
+        const hasFilme = filmesSalvos.some((filmeSalvo) => filmeSalvo.id === filme.id) //some percore o array verificando se existe algo igual ao passado por parametro
+        
+        if(hasFilme){
+            alert('você ja salvou esse filme');
+            return; // para a execução do código
+        }
+
+        filmesSalvos.push(filme);
+        localStorage.setItem('filmes', JSON.stringify(filmesSalvos));
+        alert('Filme salvo com sucesso');
+    }
+
+
     if(loading){
         return(
             <div className="filme-info">
@@ -47,7 +65,7 @@ export default function Filme(){
             {filme.sinopse}
 
             <div className="botoes">
-                <button onClick={()=>{}}> Salvar</button>
+                <button onClick={salvaFilme}> Salvar</button>
                 <button onClick={()=>{}}> 
                     <a target="blank" href={`https://youtube.com/results?search_query=${filme.nome} Trailer`}>
                         Trailler
