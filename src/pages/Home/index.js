@@ -11,7 +11,7 @@ export default function App() {
       async function loadFilmes(){
         //await esperar trazer a requisição
         const response = await api.get('r-api/?api=filmes'); //  api tem a base url e o get concatena com a url passada por parametro
-        // console.log(response.data);
+        //  console.log(response);
         setFilmes(response.data);
       }
 
@@ -26,7 +26,7 @@ export default function App() {
               <article key={filme.id}>
                 <strong>{filme.nome}</strong>
                 <img src={filme.foto} alt={filme.nome} />
-                <Link to="/">Acessar</Link>
+                <Link to={`/filme/${filme.id}`}>Acessar</Link>
               </article>
             )
           })}
