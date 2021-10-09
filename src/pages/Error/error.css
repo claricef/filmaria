@@ -1,0 +1,17 @@
+.erro{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.voltar{
+    padding: 10px;;
+    border-radius: 3px;
+    background-color: brown;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+}
+
+
