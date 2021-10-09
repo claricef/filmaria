@@ -2,6 +2,7 @@ import './filme-info.css';
 import{ useParams, useHistory } from 'react-router-dom'
 import api from '../../services/api';
 import { useEffect, useState } from 'react';
+import {toast} from 'react-toastify';
 
 export default function Filme(){
     const { id } = useParams(); // esse id é o parametro passado na rota que chama essa pagina
@@ -39,13 +40,13 @@ export default function Filme(){
         const hasFilme = filmesSalvos.some((filmeSalvo) => filmeSalvo.id === filme.id) //some percore o array verificando se existe algo igual ao passado por parametro
         
         if(hasFilme){
-            alert('você ja salvou esse filme');
+            toast.error('você ja salvou esse filme');
             return; // para a execução do código
         }
 
         filmesSalvos.push(filme);
         localStorage.setItem('filmes', JSON.stringify(filmesSalvos));
-        alert('Filme salvo com sucesso');
+        toast.success('Filme salvo com sucesso');
     }
 
 
